@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const scheduleList = document.getElementById('schedule-list');
     const addHabitBtn = document.getElementById('add-habit');
 
+    // স্থানীয় স্টোরেজ থেকে হ্যাবিট লোড করা
+    loadHabitsFromLocalStorage();
+
     // উদাহরণস্বরূপ হ্যাবিট যোগ করার ফাংশন
     addHabitBtn.addEventListener('click', () => {
         const habitName = prompt('অভ্যাসের নাম দিন:');
@@ -18,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             habitList.appendChild(habitDiv);
             addDragAndDrop();
+            saveHabitToLocalStorage(habitName, habitDuration); // হ্যাবিট স্থানীয় স্টোরেজে সংরক্ষণ
         }
     });
 
@@ -110,4 +114,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // প্রাথমিকভাবে সময়সূচী আপডেট
     updateSchedule();
+
+    // স্থানীয় স্টোরেজে হ্যাবিট সংরক্ষণ
+    function saveHabitToLocalStorage(name, duration) {
+        let habits = JSON.parse(localStorage.getItem('habits')) || [];
+        habits.push({ name, duration });
+        localStorage.setItem('habits', JSON.stringify(habits));
+    }
+
+    // স্থানীয় স্টোরেজ থেকে হ্যাবিট লোড করা
+    function loadHabitsFromLocalStorage() {
+        const habits = JSON.parse(localStorage.getItem('habits')) || [];
+        habits.forEach(habit => {
+            const habitDiv = document.createElement('div');
+            habitDiv.classList.add('habit');
+            habitDiv.setAttribute('draggable', 'true');
+            habitDiv.innerHTML = `
+                <span>${habit.name}</span>
+                <input type="number" value="${habit.duration}" min="1"> মিনিট
+            `;
+            habitList.appendChild(habitDiv);
+        });
+        addDragAndDrop();
+    }
 });
