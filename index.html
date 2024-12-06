@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>মুসলিমদের জন্য টাইম ম্যানেজমেন্ট সিস্টেম</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>নামাজের টাইম ম্যানেজমেন্ট সিস্টেম</h1>
+    </header>
+
+    <main>
+        <section id="prayer-times">
+            <h2>নামাজের সময়সূচী</h2>
+            <ul>
+                <li>ফজর: ৫:১০ PM - ৫:৪৫ PM</li>
+                <li>যোহর: ১:১৫ PM - ১:৫০ PM</li>
+                <li>আসর: ৪:৩০ PM - ৫:০৫ PM</li>
+                <li>মাগরিব: ৭:৩০ PM - ৮:০৫ PM</li>
+                <li>ইশা: ৯:০০ PM - ৯:৩৫ PM</li>
+            </ul>
+        </section>
+
+        <section id="habits">
+            <h2>অভ্যাস ট্র্যাকিং</h2>
+            <div id="habit-list">
+                <div class="habit" draggable="true">
+                    <span>কুরআন পড়া</span>
+                    <input type="number" value="45" min="1"> মিনিট
+                </div>
+                <div class="habit" draggable="true">
+                    <span>গোসল</span>
+                    <input type="number" value="10" min="1"> মিনিট
+                </div>
+                <!-- আরও হ্যাবিট যোগ করতে এখানে নতুন ডিভ যুক্ত করুন -->
+            </div>
+            <button id="add-habit">অভ্যাস যোগ করুন</button>
+        </section>
+
+        <section id="schedule">
+            <h2>টাইম টেবিল</h2>
+            <ul id="schedule-list">
+                <!-- হ্যাবিটগুলোর সময়সূচী এখানে দেখানো হবে -->
+            </ul>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
